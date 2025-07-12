@@ -29,6 +29,16 @@ from ..secrets import SonarrSecrets
 from .types import SonarrConfigBase
 
 
+class Theme(BaseEnum):
+    """
+    Theme enumeration for Sonarr.
+    """
+
+    auto = "auto"
+    light = "light"
+    dark = "dark"
+
+
 class FirstDayOfWeek(BaseEnum):
     """
     First day of the week enumeration for Sonarr.
@@ -96,6 +106,17 @@ class SonarrUISettingsConfig(SonarrConfigBase):
           show_relative_dates: true
           enable_color_impaired_mode: false
     ```
+    """
+
+    theme: Theme = Theme.auto
+    """
+    The theme to use when browsing the Sonarr UI.
+
+    Values:
+
+    * `light` (Light-coloured theme)
+    * `dark` (Dark-coloured theme)
+    * `auto` (Follows system)
     """
 
     # Calendar
@@ -170,6 +191,7 @@ class SonarrUISettingsConfig(SonarrConfigBase):
     """
 
     _remote_map: ClassVar[List[RemoteMapEntry]] = [
+        ("theme", "theme", {}),
         ("first_day_of_week", "firstDayOfWeek", {}),
         ("week_column_header", "calendarWeekColumnHeader", {}),
         ("short_date_format", "shortDateFormat", {}),
