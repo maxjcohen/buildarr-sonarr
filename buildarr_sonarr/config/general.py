@@ -242,6 +242,9 @@ class SecurityGeneralSettings(GeneralSettings):
     Requires a restart of Sonarr to take effect.
     """
 
+    # Password confirmation for updating user credentials
+    password_confirmation: Optional[SecretStr] = None
+
     certificate_validation: CertificateValidation = CertificateValidation.enabled
     """
     Change how strict HTTPS certification validation is.
@@ -281,6 +284,15 @@ class SecurityGeneralSettings(GeneralSettings):
                 "decoder": lambda v: v or None,
                 # Sonarr isn't too picky about this, but replicate the behaviour of the UI.
                 "encoder": lambda v: v.get_secret_value() if v else "",
+            },
+        ),
+        (
+            "password_confirmation",
+            "passwordConfirmation",
+            {
+                "optional": True,
+                "decoder": lambda v: v or None,
+                "root_encoder": lambda self: self.password.get_secret_value(),
             },
         ),
         ("certificate_validation", "certificateValidation", {}),
