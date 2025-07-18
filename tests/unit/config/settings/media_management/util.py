@@ -25,6 +25,7 @@ NAMING_CONFIG_DEFAULTS = {
     "id": 0,
     "renameEpisodes": False,
     "replaceIllegalCharacters": True,
+    "colonReplacementFormat": 0,
     "standardEpisodeFormat": (
         "{Series TitleYear} - "
         "S{season:00}E{episode:00} - "
