@@ -111,6 +111,18 @@ class ChmodFolder(BaseEnum):
                 raise ValueError(f"Invalid {cls.__name__} name or value: {v}") from None
 
 
+class ColonReplacementFormat(BaseEnum):
+    """
+    Colon replacement enumeration.
+    """
+
+    delete = 0
+    replace_with_dash = 1
+    replace_with_space_dash = 2
+    replace_with_space_dash_space = 3
+    smart_replace = 4
+
+
 class SonarrMediaManagementSettingsConfig(SonarrConfigBase):
     """
     Naming, file management and root folder configuration.
@@ -141,6 +153,19 @@ class SonarrMediaManagementSettingsConfig(SonarrConfigBase):
     Replace illegal characters within the file name.
 
     If set to `False`, Sonarr will remove them instead.
+    """
+
+    colon_replacement_format: ColonReplacementFormat = ColonReplacementFormat.delete
+    """
+    Change how Sonarr handles colon replacement.
+
+    Values:
+
+    * `delete` - Delete
+    * `replace_with_dash` - Replace with Dash
+    * `replace_with_space_dash` - Replace with Space Dash
+    * `replace_with_space_dash_space` - Replace with Space Dash Space
+    * `smart_replace` - Smart Replace
     """
 
     standard_episode_format: NonEmptyStr = (
@@ -456,6 +481,7 @@ class SonarrMediaManagementSettingsConfig(SonarrConfigBase):
         # Episode Naming
         ("rename_episodes", "renameEpisodes", {}),
         ("replace_illegal_characters", "replaceIllegalCharacters", {}),
+        ("colon_replacement_format", "colonReplacementFormat", {}),
         ("standard_episode_format", "standardEpisodeFormat", {}),
         ("daily_episode_format", "dailyEpisodeFormat", {}),
         ("anime_episode_format", "animeEpisodeFormat", {}),
