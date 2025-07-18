@@ -27,6 +27,6 @@ repos:
           - buildarr==0.8.0b1
           - types-requests==2.31.0.20240406
   - repo: https://github.com/pdm-project/pdm
-    rev: "2.15.1"
+    rev: "2.20.1"
     hooks:
       - id: pdm-lock-check
