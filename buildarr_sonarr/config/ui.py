@@ -29,6 +29,33 @@ from ..secrets import SonarrSecrets
 from .types import SonarrConfigBase
 
 
+class Theme(BaseEnum):
+    """
+    Theme enumeration for Sonarr.
+    """
+
+    auto = "auto"
+    light = "light"
+    dark = "dark"
+
+
+class UILanguage(BaseEnum):
+    """
+    Language for the UI.
+    """
+
+    english = 1
+    french = 2
+    spanish = 3
+    german = 4
+    italian = 5
+    danish = 6
+    dutch = 7
+    japanese = 8
+    icelandic = 9
+    chinese = 10
+
+
 class FirstDayOfWeek(BaseEnum):
     """
     First day of the week enumeration for Sonarr.
@@ -96,6 +123,36 @@ class SonarrUISettingsConfig(SonarrConfigBase):
           show_relative_dates: true
           enable_color_impaired_mode: false
     ```
+    """
+
+    theme: Theme = Theme.auto
+    """
+    The theme to use when browsing the Sonarr UI.
+
+    Values:
+
+    * `light` (Light-coloured theme)
+    * `dark` (Dark-coloured theme)
+    * `auto` (Follows system)
+    """
+
+    # Language
+    ui_language: UILanguage = UILanguage.english
+    """
+    The display language for the Sonarr UI.
+
+    Values:
+
+    * `english` - English
+    * `french` - French
+    * `spanish` - Spanish
+    * `german` - German
+    * `italian` - Italian
+    * `danish` - Danish
+    * `dutch` - Dutch
+    * `japanese` - Japanese
+    * `icelandic` - Icelandic
+    * `chinese` - Chinese
     """
 
     # Calendar
@@ -170,6 +227,8 @@ class SonarrUISettingsConfig(SonarrConfigBase):
     """
 
     _remote_map: ClassVar[List[RemoteMapEntry]] = [
+        ("theme", "theme", {}),
+        ("ui_language", "uiLanguage", {}),
         ("first_day_of_week", "firstDayOfWeek", {}),
         ("week_column_header", "calendarWeekColumnHeader", {}),
         ("short_date_format", "shortDateFormat", {}),

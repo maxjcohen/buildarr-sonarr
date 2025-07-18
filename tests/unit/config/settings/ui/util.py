@@ -23,6 +23,8 @@ UI_CONFIG_DEFAULTS = {
     # which may be different to the real defaults.
     # In this case, the model defaults are not used.
     "id": 0,
+    "theme": "auto",
+    "uiLanguage": 1,
     "firstDayOfWeek": 0,
     "calendarWeekColumnHeader": "ddd M/D",
     "shortDateFormat": "MMM D YYYY",
